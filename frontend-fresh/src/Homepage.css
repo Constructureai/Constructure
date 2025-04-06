@@ -1,0 +1,80 @@
+/* frontend-fresh/src/Homepage.css */
+/* Based on Grok 3 CSS snippet, with 3D viewer styles removed */
+/* Note: Some styles might be handled by styled-components in Homepage.jsx now */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  /* Font applied via styled-components GlobalStyle */
+}
+
+/* Container style handled by styled-component: Container */
+/* .container { ... } */
+
+/* Banner style handled by styled-component: Banner */
+/* Make sure the actual image exists at src/assets/cityscape-background.jpg */
+/* and is imported correctly in Homepage.jsx */
+/* .banner {
+  width: 100%;
+  height: 30vh;
+  background-color: #333; /* Fallback color if image fails */
+/* position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+} */
+
+/* HeaderLinks style handled by styled-component: HeaderLinks */
+/* .header-links { ... } */
+
+/* HeaderLink style handled by styled-component: HeaderLink */
+/* .header-link { ... } */
+
+/* BannerText style handled by styled-component: BannerText */
+/* .banner-text { ... } */
+
+/* MainContent style handled by styled-component: MainContent */
+/* .main-content { ... } */
+
+/* TilesSection style handled by styled-component: TilesSection */
+/* .tiles-section { ... } */
+
+/* Tile style handled by styled-component: Tile */
+/* Ensure this height matches the styled-component */
+/* .tile {
+  height: calc(100vh - 30vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem;
+  background: #000000;
+  color: #e5e7eb;
+} */
+
+/* TileTitle style handled by styled-component: TileTitle */
+/* .tile-title { ... } */
+
+/* TileDescription style handled by styled-component: TileDescription */
+/* .tile-description { ... } */
+
+
+/* --- REMOVED styles for .model-tile, .model-container, .rotation-button --- */
+
+
+/* Timeline style handled by styled-component: Timeline */
+/* .timeline { ... } */
+
+/* TimelineLine style handled by styled-component: TimelineLine */
+/* .timeline-line { ... } */
+
+
+/* Footer style handled by styled-component: Footer */
+/* .footer { ... } */
+
+/* FooterLink style handled by styled-component: FooterLink */
+/* .footer-link { ... } */
+
+/* Optional: Add any remaining global or specific styles needed */

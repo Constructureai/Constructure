@@ -1,54 +1,46 @@
+// src/contexts/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login as apiLogin, logout as apiLogout, getCurrentUser } from '../components/api';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Simulate checking authentication status (e.g., check localStorage or API)
-    const checkAuth = async () => {
+    const fetchUser = async () => {
       try {
-        // Replace this with your actual auth check logic
-        const token = localStorage.getItem('authToken');
-        if (token) {
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-        }
+        const currentUser = await getCurrentUser();
+        setUser(currentUser);
       } catch (error) {
-        console.error('Auth check failed:', error);
-        setIsAuthenticated(false);
+        setUser(null);
       } finally {
         setLoading(false);
       }
     };
-
-    checkAuth();
+    fetchUser();
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem('authToken', token);
-    setIsAuthenticated(true);
+  const login = async (email, password) => {
+    const data = await apiLogin(email, password);
+    setUser(data.user);
+    navigate('/dashboard');
   };
 
-  const logout = () => {
-    localStorage.removeItem('authToken');
-    setIsAuthenticated(false);
+  const logout = async () => {
+    await apiLogout();
+    setUser(null);
+    navigate('/');
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-}
+export const useAuth = () => useContext(AuthContext);
